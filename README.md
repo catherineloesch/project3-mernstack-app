@@ -230,7 +230,7 @@ Next, the team got started on the project proposal, working on the the user stor
 
 <br>
 
-After getting the proposal approved by the instructional team, a git repository was set up by team lead ([Hari Ramanathan](https://github.com/hpramanathan)) and shared with each member of the rest of the team ([Benjamin Khoury](https://github.com/khouryb), [Franziska Kissling](https://github.com/FrankieSlinn) and myself ([Catherine Loesch](https://github.com/catherineloesch))). Each team member then proceeded to create their own development branch on their local machine.
+After getting the proposal approved by the instructional team, a git repository was set up by team lead ([Hari Ramanathan](https://github.com/hpramanathan)) and shared with each member of the rest of the team ([Benjamin Khoury](https://github.com/khouryb), [Franziska Kissling](https://github.com/FrankieSlinn) and myself, [Catherine Loesch](https://github.com/catherineloesch)). Each team member then proceeded to create their own development branch on their local machine.
 
 ### Day 2: 05/05/2023
 
@@ -273,7 +273,7 @@ const Post = mongoose.model('Post', postSchema)
 module.exports = Post;
 ```
 
-While another team member focused on the Post model, I tackled the CRUD functions for the User model both for the front end and the back end, writing code to implement full CRUD functionality:
+With other members of the team focusing on the Post model and generating seed data for the database, I tackled the CRUD functions for the User model both for the front end and the back end, writing code to implement full CRUD functionality:
 
 - INDEX
 - SHOW
@@ -281,7 +281,7 @@ While another team member focused on the Post model, I tackled the CRUD function
 - UPDATE
 - DESTROY
 
-backend: DELETE route for the User model
+I started by defining the different routes on the backend, below is the DELETE route for the User model as an example:
 
 ```JavaScript
 router.delete('/users/:id', (req, res) => {
@@ -309,8 +309,8 @@ router.delete('/users/:id', (req, res) => {
 
 ```
 
-After all the backend routes had been successfully tested, in the Postman API platform I started implementing the frontend database requests for User model.
-Below is the example of the DELETE fetch request on the frontend:
+After testing all the backend routes in the Postman API platform and feeling condifent that they were working, I started implementing the frontend requests for User model.
+Below is the example of the DELETE fetch request for the User model:
 
 ```JavaScript
 export const deleteOneUser = async (id) => {
@@ -333,20 +333,17 @@ export const deleteOneUser = async (id) => {
 }
 ```
 
-The rest of the team implemented CRUD functions for the Post model and generated seed data for the database.
-
 ### Day 3: 06/05/2023
 
-Since the team had decided on using a CSS framework to do the styling, I also installed tailwindCSS for react. I then proceeded to add a form in the front end to add new users to the database:
+Since the team had decided on using a CSS framework to do the styling, I installed tailwindCSS for the reacr frontend. In order to learn this new-to-me framework I added a signup form to the frontend to add new users to the database, making sure the form was responsive and would easy to use on mobile screens as well.
 
-<img src='./assets/SignUpForm.jpg' alt="Sign Up form to add new Users" width="250">
+<img src='./assets/SignUpForm.jpg' alt="Sign Up form to add new Users" width="200">
 
 ### Day 4: 07/05/2023
 
 On the fourth day I continued my tainwindCSS learning curve and created a responsibe navigation bar for the website.
 
 <img src='./assets/nav_bar.jpg' alt="Nav Bar Full Screen">
-
 <img src='./assets/nav_bar_mobile.jpg' alt="nav bar mobile view" width="300">
 
 I also added a login page for users that are already in the databse:
@@ -355,9 +352,7 @@ I also added a login page for users that are already in the databse:
 
 ### Day 5: 08/05/2023
 
-On the fifth day of development the team focused on the deployment of the frontend to github pages and getting started on user authentication.
-
-I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
+On the fifth day of development the team focused on the deployment of the frontend to github pages and getting started on user authentication. I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
 
 ```JavaScript
 
@@ -396,7 +391,55 @@ router.post('/users', async (req, res) => {
 
 ### Day 6: 09/05/2023
 
-jwt passport
+jwt passport strategy
+I spent most of day 6 familiarizing myself with the passport and passport-jwt packages and writing the passport strategy
+generate secret key and store it in .env file
+
+passport options:
+
+```JavaScript
+require('dotenv').config()
+const passportJWT = require('passport-jwt')
+const ExtractJwt = passportJWT.ExtractJwt
+const jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
+jwtOptions.secretOrKey = process.env.SECRET_KEY
+
+```
+
+passport strategy
+
+```JavaScript
+
+const Post = require('../models/post')
+const User = require('../models/user')
+const mongoose = require('mongoose');
+const passportJWT = require('passport-jwt')
+const JwtStrategy = passportJWT.Strategy
+
+//strategy: when client sends a request with JWT
+    //check if client has valid JWT
+    //check if token is expired
+const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
+    const data = await User.findOne({_id: jwtPayload.id})
+    const user = {...data}
+    if (data._id) {
+        user._id = data._id.valueOf()
+    }
+    if (user._id && user._id === jwtPayload.id) {
+        // If ID is in the db:
+            // then user is legitimiate -> run the route requested by user
+            // null: no errors
+            // user: document retrieved from db that matched id of token
+        next(null, user)
+    } else {
+        // If ID does not match any document in db -> skip requested route + return 401 status code
+        // false: no user was retried from db
+        next(null, false)
+    }
+})
+
+```
 
 ```JavaScript
 /**
