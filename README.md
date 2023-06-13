@@ -21,6 +21,8 @@ A MERN Full-Stack Website that allows users to sign-up for an account, read, pos
 WHY A DIVORCE PARTY GUESTBOOK?
 Lots of people will attest to their experience of divorce as one of the best things that ever happened to them. Of course they will want to celebrate with lots of friends and family. What better way to commemorate the celebration than with a Divorce Party Guestbook? The app was developed to help recent divorcees enjoy their divorce party to the fullest and will hopefully let users re-live all the happy memories. A divorce isn't the end; merely the beginning to either a new chapter or a whole new sequel.
 
+<img src='./assets/layout.png' alt="login page">
+
 ## 2. Deployment link
 
 https://hpramanathan.github.io/project3-mernstack-app/
@@ -191,13 +193,7 @@ Next, the team devised the user stories, a wireframe, schema and flow chart cont
 
 <img src='./assets/wireframe.png' alt='project wireframe'>
 
-### schema
-
-<img src='./assets/schema.png' alt="project schema">
-
-### Database Models Flowchart
-
-<img src='./assets/flow_chart.png' alt="Database Models Flowchart">
+<br>
 
 ### User Stories
 
@@ -211,56 +207,208 @@ Next, the team devised the user stories, a wireframe, schema and flow chart cont
 - As a user I should be able to edit my posts.
 - As a user I should be able to log off from the website.
 
+<br>
+
+### schema
+
+<img src='./assets/schema.png' alt="project schema">
+
+<br>
+
+### Database Models Flowchart
+
+<img src='./assets/flow_chart.png' alt="Database Models Flowchart">
+
+<br>
+
 After setting up the git repository for the project, each team member created their own local development branch.
 
 ### Day 2: 05/05/2023
 
+With the git repository and development branches et up, the team divided up the tasks and started the coding part of the project:
+I started the front end by setting the react application witht the 'npx create-react-app' command and installing react-router.
+
+Next, the team created the User and Post models.
+
+```JavaScript
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    name: { type: String, required: true },
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    }]
+
+}, { timestamps: true })
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = User;
+```
+
+```JavaScript
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
+
+const postSchema = new Schema({
+    author: { type: String, required: true },
+    title: String,
+    content: { type: String, required: true }
+}, { timestamps: true })
+
+const Post = mongoose.model('Post', postSchema)
+
+module.exports = Post;
+```
+
+Finally, I create all the necessary CRUD functions for the User model for the frontend to make fetch requests to the database and the corresponding backend routes for:
+
+- INDEX
+- CREATE
+- SHOW
+- UPDATE
+- DESTROY
+
+backend route for DELETE User action:
+
+Once the models were completed the team focused on generating the backend routes for CRUD functionality.
+I worked on the routes for the User model. Below is an example of one of those routes, the DELETE route for the User model:
+
+```JavaScript
+router.delete('/users/:id', (req, res) => {
+    User.findByIdAndRemove(req.params.id)
+    .then(user => {
+        if (user) {
+            res.json(user)
+        } else {
+            res.status(404).json({
+                error: {
+                    name: 'DocumentNotFound',
+                    message: "The provided ID doesn't match any documents"
+                }
+            })
+
+        }
+
+    })
+    .catch((error) => {
+        console.log(error)
+        res.status(500).json({error: error})
+    })
+})
+
+
+```
+
+After all the backend routes had been successfully tested, in the Postman API platform I started implementing the frontend routes for the User model. Below is the example of the DELETE fetch request on the frontend:
+
+```JavaScript
+export const deleteOneUser = async (id) => {
+    const fetchOptions = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }};
+
+    const url = `http://localhost:5000/users/${id}`
+    const response = await fetch(url, fetchOptions);
+
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+    }
+
+    return response.json();
+}
+```
+
+The rest of the team implemented CRUD functions for the Post model and generated seed data for the database.
+
 ### Day 3: 06/05/2023
+
+Since the team had decided on using a CSS framework to do the styling, I also installed tailwindCSS for react. I then proceeded to add a form in the front end to add new users to the database:
+
+<img src='./assets/SignUpForm.jpg' alt="Sign Up form to add new Users" width="250">
 
 ### Day 4: 07/05/2023
 
+On the fourth day I continued my tainwindCSS learning curve and created a responsibe navigation bar for the website.
+
+<img src='./assets/nav_bar.jpg' alt="Nav Bar Full Screen">
+
+<img src='./assets/nav_bar_mobile.jpg' alt="nav bar mobile view" width="300">
+
+I also added a login page for users that are already in the databse:
+
+<img src='./assets/login_mobile.jpg' alt="login page" width='300'>
+
 ### Day 5: 08/05/2023
+
+On the fifth day of development the ream focused on the deployment of the frontend to github pages and getting started on user authentication.
+
+I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
+
+```JavaScript
+
+router.post('/users', async (req, res) => {
+
+    try {
+        //Check if username already exists in db
+        //If it does, send error
+        const usernameExists = await User.find({username: req.body.username})
+
+        if (usernameExists.length > 0) {
+            res.send({error: "username already exists"})
+
+        } else {
+            //salt + hash password entered by user
+            const salt = await bcrypt.genSalt()
+            const hashedPassword = await bcrypt.hash(req.body.password, salt)
+
+            const newUser = {
+                username: req.body.username,
+                password: hashedPassword,
+                name: req.body.name,
+                posts: []
+            }
+
+            //create new User document
+            User.create(newUser).then(function(user) {
+                res.status(201).json(user)
+            })
+        }
+    } catch {
+        res.status(500).json({error: 'Internal Server Error'})    }
+})
+
+```
 
 ### Day 6: 09/05/2023
 
+On day six worked on displaying helpful error messages to the user upon login, for example if the password they entered does not match to the one in the dadabase or if their username is not registered.
+
+jwt passport
+
+a connection with the Mongo Database was established. A seed file was then produced to populate initial data into the database.
+
 ### Day 7: 10/05/2023
 
-### Day 8: 11/05/2023
-
-### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
-
-- ### FLOW CHART, USER STORIES AND WIREFRAME
-
-- ### LAYOUT
-
-  Franziska took the lead with researching a number of colour schemes online and as a team we agreed upon the first colour scheme below:
-  ![Colour Schemes](./documentation/ColourSchemes.png "Colour Schemes")
-
-  Franziska did the same with potential images to be used for the website. Again, as a team we went with the first one. (**WARNING**: One of the images contains a swear word.)
-  ![Divorce Party Images](./documentation/DivorcePartyImages.png "Divorce Party Images")
-
-  We used the **Tailwind CSS** framework for our layout and styling. We added the chosen colour scheme above to our Tailwind _config_ file.
-
-  This is what our final homepage layout looked like:
-  ![Layout](./documentation/Layout.png "Layout")
-
-## BUILD/CODE PROCESS
-
-We utilised the MERN Stack. As a first step a connection with the Mongo Database was established. A seed file was then produced to populate initial data into the database.
-
-Models were then established for the Users and Posts.
-
-![User Model](./documentation/UserModel.png "User Model")
-
-Once the models were completed backend routes were coded. The routes were tested in Postman API Platform.
-
-![Example Backend Route](./documentation/ExampleBackendRoute.png "Example Backend Route")
-
-After the backend routes were successfully tested the frontend routes were implemented.
+passport jwt
 
 The user authentication was developed using bcrypt for password hashing and Passport JWT for user authentication. The authentication was integrated into the routes.
 
-Github provided version control. To minimise merge conflicts commits and pulls were done frequently.
+### Day 8: 11/05/2023
+
+add account page for user
+add logout
+user specific posts +CRUD
+
+### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
 
 ## CHALLENGES
 
@@ -275,7 +423,8 @@ Github provided version control. To minimise merge conflicts commits and pulls w
 
 ## KEY LEARNING/TAKEAWAYS
 
-- In the immortal words of Big Chris, _It's been emotional_.
+- Good communication is key when working in a team that contributes to the same git repository.
+- Reviewing git conflicts as a team can avoid issues of code getting deleted.
 
 ## BUGS
 

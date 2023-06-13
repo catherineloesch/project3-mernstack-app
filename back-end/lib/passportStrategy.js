@@ -32,7 +32,7 @@ const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
             // user: document retrieved from db that matched id of token
         next(null, user)
     } else {
-        // If ID does not match any documen in db -> skip requested route + return 401 status code
+        // If ID does not match any document in db -> skip requested route + return 401 status code
         // false: no user was retried from db
         next(null, false)
     }
