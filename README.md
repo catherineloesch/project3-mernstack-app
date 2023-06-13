@@ -11,8 +11,7 @@
 7. [Challenges](#challenges)
 8. [Wins](#wins)
 9. [Key Learnings & Takeaways](#takeaways)
-10. [Bugs](#bugs)
-11. [Future Improvements](#future-improvements)
+10. [Future Improvements](#future-improvements)
 
 ## <a name="description"></a> 1. Description
 
@@ -451,25 +450,31 @@ user specific posts +CRUD
 
 ## 7. <a name="challenges"></a> Challenges
 
-- Seeding: The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
-- Authentication: Developing user authentication posed challenges. The team utilized bcrypt for password hashing and Passport JWT for user authentication. Integrating authentication into the routes required careful implementation and testing.
+- Seeding
+  - The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
+- Authentication:
+  - Developing user authentication posed challenges. T
+- deployment
+  - a major challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server.
+  - This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website.
+  - The team worked diligently to troubleshoot and resolve this bug, but were unable to do so.
+    Hence the website is only accessible via a _localhost_.
 
 ## 8. <a name="wins"></a> Wins
 
-- Authentication: Successfully implementing user authentication using bcrypt for password hashing and Passport JWT for user authentication was a significant win for the team. It ensured secure access and protected user data.
-- Tailwind CSS: Utilizing the Tailwind CSS framework for layout and styling proved to be a success. The chosen color scheme and styling enhanced the overall design of the website.
-- Git conflicts: The team effectively managed Git conflicts by frequently committing and pulling changes from the repository. This approach minimized conflicts and facilitated smooth collaboration.
+- The team managed to fullfill all the MVP requirements with the exception of front end deployment.
+- Authentication
+
+- TailwindCSS: every member on the team managed to learn a new css framework they hadn't used before and felt comfortable using it at the end the project.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
+- keeping the front end and back end code in separate git repositories helps avoid complications during the deployment process.
+- frequently pulling changes from the main github repository and merging them to the local branch you're working on is important in avoiding conflicts when making pull requests further down the line.
 
-## <a name="bugs"></a> 10. Bugs
+## <a name="future-improvements"></a> 10. Future Improvements
 
-- One notable challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server. This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website. The team worked diligently to troubleshoot and resolve this bug, but were unable to do so. Hence the website is only accessible via a _localhost_.
-
-## <a name="future-improvements"></a> 11. Future Improvements
-
-- Create a file upload facility for user profile pictures and party pictures within a post: Enhancing the website by adding a file upload feature would allow users to upload profile pictures and images related to their divorce party posts, further enriching the user experience.
-- Get quotes about divorce via an external API: Integrating an external API that provides quotes specifically related to divorce would add interesting and relevant content to the website. It could enhance the overall user engagement and provide additional value to the users.
+- enable users to upload files so they can add profile pictures and add phtographs to their posts.
+- incorporate a third-party api: displaying funny or motivational quotes specifically related to divorce would add interesting and relevant content to the website
