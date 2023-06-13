@@ -12,7 +12,7 @@
 8. Wins
 9. Key Learnings & Takeaways
 10. Bugs
-11. [Future Improvements](#11-future-improvements)
+11. [Future Improvements](#future-improvements)
 
 ## 1. Description
 
@@ -469,7 +469,7 @@ user specific posts +CRUD
 
 - One notable challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server. This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website. The team worked diligently to troubleshoot and resolve this bug, but were unable to do so. Hence the website is only accessible via a _localhost_.
 
-## <a href="#11-future-improvements"> 11. Future Improvements </a>
+## <a name="future-improvements"></a> 11. Future Improvements
 
 - Create a file upload facility for user profile pictures and party pictures within a post: Enhancing the website by adding a file upload feature would allow users to upload profile pictures and images related to their divorce party posts, further enriching the user experience.
 - Get quotes about divorce via an external API: Integrating an external API that provides quotes specifically related to divorce would add interesting and relevant content to the website. It could enhance the overall user engagement and provide additional value to the users.
