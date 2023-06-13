@@ -16,8 +16,8 @@
 
 ## <a name="description"></a> 1. Description
 
-A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
-The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.
+A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course. <br>
+The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.<br>
 Users can also read, post, edit and delete comments in the Guestbook appliation, the concept of which was tailored around a specific event type: a divorce party. The idea behind this concept was to support recent divorcees by enjoying their divorce party to the fullest and later re-live all the happy memories.
 
 <img src='./assets/Layout.png' alt="project landing page">
@@ -28,8 +28,7 @@ https://hpramanathan.github.io/project3-mernstack-app/
 
 ## <a name="installation"></a> 3. Installation
 
-- Front end dependencies:
-  - package manager used: npm (v9.6.7)
+- package manager used: npm (v9.6.7)
   - https://www.npmjs.com/package/npm
   - to install dependencies, run the following command in both the front end and back end directories:
 
@@ -56,8 +55,12 @@ Additional packages:
   - https://www.npmjs.com/package/react-router
 - authentication: bcryptjs (v2.4.3)
   - https://www.npmjs.com/package/bcryptjs
-- styling: TailwindCSS (v3.3.2)
-  - https://tailwindcss.com/docs/guides/create-react-app
+- UI
+  - styling: TailwindCSS (v3.3.2)
+    - https://tailwindcss.com/docs/guides/create-react-app
+  - icons
+    - all icons used are Scalable Vector Graphics from iconify
+    - https://iconify.design/
 
 ### Back End
 
@@ -90,9 +93,6 @@ Additional packages:
     - https://www.npmjs.com/package/passport
   - passport-jwt (v.4.0.1)
     - https://www.npmjs.com/package/passport-jwt
-- Icons
-  - All icons used are Scalable Vector Graphics from iconify
-  - https://iconify.design/
 
 ### Deployment
 
@@ -168,14 +168,14 @@ Additional packages:
 - more than 2 models
 - css framework e.g. TailwindCSS or bootstrap
 
-## 6. <a name="planning"></a> Planning/Build Process
+## <a name="planning"></a>6. Planning/Build Process
 
 - The team working on this project included 4 members:
 
-  - [Hari Ramanathan](https://github.com/hpramanathan) (GitHub Code Owner/Team Lead)
+  - [Hari Ramanathan](https://github.com/hpramanathan) - GitHub Code Owner/Team Lead
   - [Benjamin Khoury](https://github.com/khouryb)
   - [Franziska Kissling](https://github.com/FrankieSlinn)
-  - myself ([Catherine Loesch](https://github.com/catherineloesch))
+  - myself - [Catherine Loesch](https://github.com/catherineloesch)
 
 - Timeframe: 9 days
   - The deliverables were issued to the team on 04/05/2023 with the submission deadline and presentation date on 12/05/2023
@@ -185,7 +185,7 @@ Additional packages:
 ### Day 1: 04/05/2023
 
 On day 1, the team brainstormed together to develop the project concept, design, coding approach and working schedule.
-The team name was picked (Chewing the CRUD) and agreed on a concept: A virtual guest book for an event, specifically a divorce party. The team then discussed each member's strengths and weaknesses, the details of which were recorded in the [Team Expectations Setting Document](https://docs.google.com/document/d/1QG9nAynGNKvsSN4Jzfesn4T-DbXv5GxTEtXh-bZMAAM/edit). <br>
+The team picked a team name (Chewing the CRUD) and agreed on a concept: A virtual guest book for an event, specifically a divorce party. The team then discussed each member's strengths and weaknesses, the details of which were recorded in the [Team Expectations Setting Document](https://docs.google.com/document/d/1QG9nAynGNKvsSN4Jzfesn4T-DbXv5GxTEtXh-bZMAAM/edit). <br>
 
 Next, the team devised the user stories, a wireframe, schema and flow chart containing the database models that had been agreed upon earlier in the day:
 
@@ -225,10 +225,9 @@ After setting up the git repository for the project, each team member created th
 
 ### Day 2: 05/05/2023
 
-With the git repository and development branches et up, the team divided up the tasks and started the coding part of the project:
-I started the front end by setting the react application witht the 'npx create-react-app' command and installing react-router.
-
-Next, the team created the User and Post models.
+With the git repository and development branches set up, the team divided up the tasks and started the coding phase of the project:
+I got started on the front end by setting the react application witht the 'npx create-react-app' command and installing react-router.
+I then moved on to creating the 2 models for the project: a User and a Post model. These models have a one-to-many relationship where a User can have many posts but a post only belongs to one user.
 
 ```JavaScript
 const mongoose = require('mongoose')
@@ -265,18 +264,15 @@ const Post = mongoose.model('Post', postSchema)
 module.exports = Post;
 ```
 
-Finally, I create all the necessary CRUD functions for the User model for the frontend to make fetch requests to the database and the corresponding backend routes for:
+While another team member focused on the Post model, I tackled the CRUD functions for the User model both for the front end and the back end, writing code to implement full CRUD functionality:
 
 - INDEX
-- CREATE
 - SHOW
+- CREATE
 - UPDATE
 - DESTROY
 
-backend route for DELETE User action:
-
-Once the models were completed the team focused on generating the backend routes for CRUD functionality.
-I worked on the routes for the User model. Below is an example of one of those routes (the DELETE route for the User model):
+backend: DELETE route for the User model
 
 ```JavaScript
 router.delete('/users/:id', (req, res) => {
@@ -304,7 +300,8 @@ router.delete('/users/:id', (req, res) => {
 
 ```
 
-After all the backend routes had been successfully tested, in the Postman API platform I started implementing the frontend routes for the User model. Below is the example of the DELETE fetch request on the frontend:
+After all the backend routes had been successfully tested, in the Postman API platform I started implementing the frontend database requests for User model.
+Below is the example of the DELETE fetch request on the frontend:
 
 ```JavaScript
 export const deleteOneUser = async (id) => {
@@ -349,7 +346,7 @@ I also added a login page for users that are already in the databse:
 
 ### Day 5: 08/05/2023
 
-On the fifth day of development the ream focused on the deployment of the frontend to github pages and getting started on user authentication.
+On the fifth day of development the team focused on the deployment of the frontend to github pages and getting started on user authentication.
 
 I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
 
@@ -460,7 +457,7 @@ user specific posts +CRUD
 - Tailwind CSS: Utilizing the Tailwind CSS framework for layout and styling proved to be a success. The chosen color scheme and styling enhanced the overall design of the website.
 - Git conflicts: The team effectively managed Git conflicts by frequently committing and pulling changes from the repository. This approach minimized conflicts and facilitated smooth collaboration.
 
-## <a name="takeaways"></a> 9. Key Learning/Takeaways
+## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
