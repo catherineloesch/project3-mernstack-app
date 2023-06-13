@@ -2,19 +2,19 @@
 
 ## Overview
 
-1. Description
-2. Deployment Link
-3. Installation
-4. Technologies Used
-5. Deliverables
-6. Planning/Build Process
-7. Challenges
-8. Wins
-9. Key Learnings & Takeaways
-10. Bugs
+1. [Description](#description)
+2. [Deployment Link](#deployment)
+3. [Installation](#installation)
+4. [Technologies Used](#technologies)
+5. [Deliverables](#deliverables)
+6. [Planning/Build Process](#planning)
+7. [Challenges](#challenges)
+8. [Wins](#wins)
+9. [Key Learnings & Takeaways](#takeaways)
+10. [Bugs](#bugs)
 11. [Future Improvements](#future-improvements)
 
-## 1. Description
+## <a name="description"></a> 1. Description
 
 A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
 The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.
@@ -22,11 +22,11 @@ Users can also read, post, edit and delete comments in the Guestbook appliation,
 
 <img src='./assets/Layout.png' alt="project landing page">
 
-## 2. Deployment link
+## <a name="deployment"></a> 2. Deployment link
 
 https://hpramanathan.github.io/project3-mernstack-app/
 
-## 3. Installation
+## <a name="installation"></a> 3. Installation
 
 - Front end dependencies:
   - package manager used: npm (v9.6.7)
@@ -37,7 +37,7 @@ https://hpramanathan.github.io/project3-mernstack-app/
 npm install
 ```
 
-## 4. Technologies Used
+## <a name="technologies"></a> 4. Technologies Used
 
 ### Front End
 
@@ -125,7 +125,7 @@ Additional packages:
   - used for building the wireframe + ERD
   - https://excalidraw.com/
 
-## 5. Deliverables
+## <a name="deliverables"></a> 5. Deliverables
 
 ### MVP Requirements
 
@@ -168,7 +168,7 @@ Additional packages:
 - more than 2 models
 - css framework e.g. TailwindCSS or bootstrap
 
-## 6. Planning/Build Process
+## 6. <a name="planning"></a> Planning/Build Process
 
 - The team working on this project included 4 members:
 
@@ -449,23 +449,23 @@ user specific posts +CRUD
 
 ### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
 
-## 7. Challenges
+## 7. <a name="challenges"></a> Challenges
 
 - Seeding: The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
 - Authentication: Developing user authentication posed challenges. The team utilized bcrypt for password hashing and Passport JWT for user authentication. Integrating authentication into the routes required careful implementation and testing.
 
-## 8. Wins
+## 8. <a name="wins"></a> Wins
 
 - Authentication: Successfully implementing user authentication using bcrypt for password hashing and Passport JWT for user authentication was a significant win for the team. It ensured secure access and protected user data.
 - Tailwind CSS: Utilizing the Tailwind CSS framework for layout and styling proved to be a success. The chosen color scheme and styling enhanced the overall design of the website.
 - Git conflicts: The team effectively managed Git conflicts by frequently committing and pulling changes from the repository. This approach minimized conflicts and facilitated smooth collaboration.
 
-## 9. Key Learning/Takeaways
+## <a name="takeaways"></a> 9. Key Learning/Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
 
-## 10. BUGS
+## <a name="bugs"></a> 10. Bugs
 
 - One notable challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server. This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website. The team worked diligently to troubleshoot and resolve this bug, but were unable to do so. Hence the website is only accessible via a _localhost_.
 
