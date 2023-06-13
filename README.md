@@ -16,10 +16,8 @@
 
 ## 1. Description
 
-A MERN Full-Stack Website that allows users to sign-up for an account, read, post, edit and delete comments in a Divorce Party Guest Book. This was implemented as a group project consisting of four General Assembly Software Engineering Immersive students with the amusing team name "Chewing the CRUD".
-
-WHY A DIVORCE PARTY GUESTBOOK?
-Lots of people will attest to their experience of divorce as one of the best things that ever happened to them. Of course they will want to celebrate with lots of friends and family. What better way to commemorate the celebration than with a Divorce Party Guestbook? The app was developed to help recent divorcees enjoy their divorce party to the fullest and will hopefully let users re-live all the happy memories. A divorce isn't the end; merely the beginning to either a new chapter or a whole new sequel.
+A MERN Full-Stack Website that allows users to sign-up for an account and subsequently login into and ou of the account. They can update their password and username as well as read, post, edit and delete comments in a Divorce Party Guest Book.
+This project was implemented as a group project consisting of four General Assembly Software Engineering Immersive students. The app was developed to help recent divorcees enjoy their divorce party to the fullest and will hopefully let users re-live all the happy memories.
 
 <img src='./assets/layout.png' alt="login page">
 
@@ -178,9 +176,10 @@ Additional packages:
   - [Franziska Kissling](https://github.com/FrankieSlinn)
   - myself, [Catherine Loesch](https://github.com/catherineloesch)
 
-- Timeframe: We were given 8 days to complete work on this project
-  - from: 04/05/2023
-  - to: 12/05/2023
+- Timeframe: 9 days
+  - The deliverables were issued to the team on 04/05/2023 with the submission deadline and presentation date on 12/05/2023
+
+<br>
 
 ### Day 1: 04/05/2023
 
@@ -276,7 +275,7 @@ Finally, I create all the necessary CRUD functions for the User model for the fr
 backend route for DELETE User action:
 
 Once the models were completed the team focused on generating the backend routes for CRUD functionality.
-I worked on the routes for the User model. Below is an example of one of those routes, the DELETE route for the User model:
+I worked on the routes for the User model. Below is an example of one of those routes (the DELETE route for the User model):
 
 ```JavaScript
 router.delete('/users/:id', (req, res) => {
@@ -390,11 +389,50 @@ router.post('/users', async (req, res) => {
 
 ### Day 6: 09/05/2023
 
-On day six worked on displaying helpful error messages to the user upon login, for example if the password they entered does not match to the one in the dadabase or if their username is not registered.
-
 jwt passport
 
-a connection with the Mongo Database was established. A seed file was then produced to populate initial data into the database.
+```JavaScript
+//LOGIN when user tried to log into account with username + password
+router.post('/users/login', async (req, res) => {
+
+    //retrieve user document from db by username (usernames are unique)
+    const user = await User.find({username: req.body.username})
+
+    if (user.length == 0) { // no record found in database
+        res.status(400).json({error: 'user does not exist in database'})
+
+    } else { // user exists in db
+
+        try {   //check if password user entered matches password in db
+            if (await bcrypt.compare(req.body.password, user[0].password)) {
+
+                const payload = {
+                    id: user[0]._id,
+                    username: user[0].username
+                }
+
+                //Build JWT
+                const token = jwt.sign(payload, jwtOptions.secretOrKey, {expiresIn: 432000}) // 5 days -> 432000s
+
+                //Send JWT back to user
+                res.status(201).json({
+                    success: true,
+                    token: token,
+                    user: user
+                })
+
+              } else { // password user entered does not match password in db
+                res.status(401).json({error: 'Invalid username or password'})
+              }
+        } catch(error) {
+            res.status(500).json({error: error})
+
+        }
+    }
+})
+```
+
+The team also worked on etablishing a connection with the Mongo Database and producing seed data to populate it.
 
 ### Day 7: 10/05/2023
 
