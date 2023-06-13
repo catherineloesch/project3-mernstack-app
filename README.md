@@ -16,7 +16,6 @@
 ## <a name="description"></a> 1. Description
 
 A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
-
 <br>
 
 The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.<br>
@@ -392,6 +391,11 @@ router.post('/users', async (req, res) => {
 jwt passport
 
 ```JavaScript
+/**
+
+ * Description: Login User and retrieve User data from db
+ */
+
 //LOGIN when user tried to log into account with username + password
 router.post('/users/login', async (req, res) => {
 
@@ -438,15 +442,91 @@ The team also worked on etablishing a connection with the Mongo Database and pro
 
 passport jwt
 
+```JavaScript
+  //upon sign up + login, save token to localStorage in browser
+  localStorage.setItem("divorceJWT", JSON.stringify(token))
+
+  //upon logout, remove token from localStorage
+  localStorage.removeItem("divorceJWT")
+
+```
+
 The user authentication was developed using bcrypt for password hashing and Passport JWT for user authentication. The authentication was integrated into the routes.
 
 ### Day 8: 11/05/2023
 
-add account page for user
-add logout
+When a user tries to access any route that is protected, the token in localstorage will be checked first to see if
+
+frontend
+
+```JavaScript
+//access a protected route when accessing user document
+export const getToAccountPage = async (id, token) => {
+    const url = `http://localhost:5000/users/${id}/account`
+    const fetchOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token.token
+    }}
+
+    try {
+        const response = await fetch(url, fetchOptions);
+        const data = await response.json()
+        return data
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
+ async function gotToAccount() {
+    if (props.tokenInLocalStorage) {
+
+      let token = JSON.parse(localStorage.getItem('divorceJWT'))
+      let response = await getToAccountPage(token.id, token)
+
+      if (response.status === 200) {
+        navigate(`/users/${token.id}/account`)
+
+      } else {
+        navigate('/users/login')
+      }
+
+    } else {
+      navigate('/users/login')
+    }
+
+  }
+```
+
+backend
+
+```JavaScript
+//valid JWT token required to acces this route
+router.get('/users/:id/account', passport.authenticate('jwt', {session: false}), (req, res) => {
+    try {
+        res.json({
+            status: 200,
+            message: 'login sucessful',
+            user: req.user._doc
+        })
+    } catch(error) {
+        res.json({error: error})
+        console.log(error)
+    }
+
+})
+
+```
+
+add account page for user -> protected
+add logout function
 user specific posts +CRUD
 
 ### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
+
+On the final day, finishing touches were added to the readme document and the team presented the project to their cohort.
 
 ## 7. <a name="challenges"></a> Challenges
 
@@ -463,16 +543,15 @@ user specific posts +CRUD
 ## 8. <a name="wins"></a> Wins
 
 - The team managed to fullfill all the MVP requirements with the exception of front end deployment.
-- Authentication
-
 - TailwindCSS: every member on the team managed to learn a new css framework they hadn't used before and felt comfortable using it at the end the project.
+- Authentication was successfully implemented which the team was proud of as none of the member has worked on authentication before this project.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
-- keeping the front end and back end code in separate git repositories helps avoid complications during the deployment process.
-- frequently pulling changes from the main github repository and merging them to the local branch you're working on is important in avoiding conflicts when making pull requests further down the line.
+- Keeping the front end and back end code in separate git repositories helps avoid complications during the deployment process.
+- Frequently pulling changes from the main github repository and merging them to the local branch you're working on is important in avoiding conflicts when making pull requests further down the line.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
