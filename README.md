@@ -7,17 +7,18 @@
 3. Installation
 4. Technologies Used
 5. Deliverables
-6. Planning
-7. Build Process
-8. Challenges
-9. Wins
-10. Key Learnings & Takeaways
-11. Future Improvements
+6. Planning/Build Process
+7. Challenges
+8. Wins
+9. Key Learnings & Takeaways
+10. Bugs
+11. [Future Improvements](#11-future-improvements)
 
 ## 1. Description
 
-A MERN Full-Stack Website that allows users to sign-up for an account and subsequently login into and ou of the account. They can update their password and username as well as read, post, edit and delete comments in a Divorce Party Guest Book.
-This project was implemented as a group project consisting of four General Assembly Software Engineering Immersive students. The app was developed to help recent divorcees enjoy their divorce party to the fullest and will hopefully let users re-live all the happy memories.
+A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
+The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.
+Users can also read, post, edit and delete comments in the Guestbook appliation, the concept of which was tailored around a specific event type: a divorce party. The idea behind this concept was to support recent divorcees by enjoying their divorce party to the fullest and later re-live all the happy memories.
 
 <img src='./assets/Layout.png' alt="project landing page">
 
@@ -28,7 +29,7 @@ https://hpramanathan.github.io/project3-mernstack-app/
 ## 3. Installation
 
 - Front end dependencies:
-  - package manager used: npm - v9.6.7
+  - package manager used: npm (v9.6.7)
   - https://www.npmjs.com/package/npm
   - to install dependencies, run the following command in both the front end and back end directories:
 
@@ -167,14 +168,14 @@ Additional packages:
 - more than 2 models
 - css framework e.g. TailwindCSS or bootstrap
 
-## 6. Planning
+## 6. Planning/Build Process
 
 - The team working on this project included 4 members:
 
   - [Hari Ramanathan](https://github.com/hpramanathan) (GitHub Code Owner/Team Lead)
   - [Benjamin Khoury](https://github.com/khouryb)
   - [Franziska Kissling](https://github.com/FrankieSlinn)
-  - myself, [Catherine Loesch](https://github.com/catherineloesch)
+  - myself ([Catherine Loesch](https://github.com/catherineloesch))
 
 - Timeframe: 9 days
   - The deliverables were issued to the team on 04/05/2023 with the submission deadline and presentation date on 12/05/2023
@@ -448,27 +449,27 @@ user specific posts +CRUD
 
 ### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
 
-## CHALLENGES
+## 7. Challenges
 
 - Seeding: The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
 - Authentication: Developing user authentication posed challenges. The team utilized bcrypt for password hashing and Passport JWT for user authentication. Integrating authentication into the routes required careful implementation and testing.
 
-## WINS
+## 8. Wins
 
 - Authentication: Successfully implementing user authentication using bcrypt for password hashing and Passport JWT for user authentication was a significant win for the team. It ensured secure access and protected user data.
 - Tailwind CSS: Utilizing the Tailwind CSS framework for layout and styling proved to be a success. The chosen color scheme and styling enhanced the overall design of the website.
 - Git conflicts: The team effectively managed Git conflicts by frequently committing and pulling changes from the repository. This approach minimized conflicts and facilitated smooth collaboration.
 
-## KEY LEARNING/TAKEAWAYS
+## 9. Key Learning/Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
 
-## BUGS
+## 10. BUGS
 
 - One notable challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server. This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website. The team worked diligently to troubleshoot and resolve this bug, but were unable to do so. Hence the website is only accessible via a _localhost_.
 
-## FUTURE IMPROVEMENTS
+## <a href="#11-future-improvements"> 11. Future Improvements </a>
 
 - Create a file upload facility for user profile pictures and party pictures within a post: Enhancing the website by adding a file upload feature would allow users to upload profile pictures and images related to their divorce party posts, further enriching the user experience.
 - Get quotes about divorce via an external API: Integrating an external API that provides quotes specifically related to divorce would add interesting and relevant content to the website. It could enhance the overall user engagement and provide additional value to the users.
