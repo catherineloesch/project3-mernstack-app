@@ -19,7 +19,7 @@
 A MERN Full-Stack Website that allows users to sign-up for an account and subsequently login into and ou of the account. They can update their password and username as well as read, post, edit and delete comments in a Divorce Party Guest Book.
 This project was implemented as a group project consisting of four General Assembly Software Engineering Immersive students. The app was developed to help recent divorcees enjoy their divorce party to the fullest and will hopefully let users re-live all the happy memories.
 
-<img src='./assets/layout.png' alt="login page">
+<img src='./assets/Layout.png' alt="project landing page">
 
 ## 2. Deployment link
 
