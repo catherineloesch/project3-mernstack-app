@@ -3,7 +3,7 @@
 ## Overview
 
 1. [Description](#description)
-2. [Deployment Link](#deployment)
+2. [Deployment Link](#deployment-link)
 3. [Installation](#installation)
 4. [Technologies Used](#technologies)
 5. [Deliverables](#deliverables)
@@ -22,7 +22,7 @@ Users can also read, post, edit and delete comments in the Guestbook appliation,
 
 <img src='./assets/Layout.png' alt="project landing page">
 
-## <a name="deployment"></a> 2. Deployment link
+## <a name="deployment-link"></a> 2. Deployment link
 
 https://hpramanathan.github.io/project3-mernstack-app/
 
