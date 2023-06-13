@@ -178,8 +178,16 @@ Additional packages:
   - [Franziska Kissling](https://github.com/FrankieSlinn)
   - myself - [Catherine Loesch](https://github.com/catherineloesch)
 
-- Timeframe: 9 days
-  - The deliverables were issued to the team on 04/05/2023 with the submission deadline and presentation date on 12/05/2023
+- Timeframe:
+  - The deliverables were issued to the team on 04/05/2023.
+    - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
+    - the proposal was to include:
+      - description of the project
+      - user stories
+      - Database Models Flowchart
+      - Schema
+      - wireframe
+  - Submission deadline + poject presentation on: 12/05/2023
 
 <br>
 
@@ -188,7 +196,7 @@ Additional packages:
 On day 1, the team brainstormed together to develop the project concept, design, coding approach and working schedule.
 The team picked a team name (Chewing the CRUD) and agreed on a concept: A virtual guest book for an event, specifically a divorce party. The team then discussed each member's strengths and weaknesses, the details of which were recorded in the [Team Expectations Setting Document](./assets/team_expectations_setting.pdf). <br>
 
-Next, the team devised the user stories, a wireframe, schema and flow chart containing the database models that had been agreed upon earlier in the day:
+Next, the team got started on the project proposal, working on the the user stories, a wireframe, schema and flow chart containing the database models that had been agreed upon earlier in the day:
 
 ### wireframe
 
@@ -222,7 +230,7 @@ Next, the team devised the user stories, a wireframe, schema and flow chart cont
 
 <br>
 
-After setting up the git repository for the project, each team member created their own local development branch.
+After getting the proposal approved by the instructional team, a git repository was set up by team lead ([Hari Ramanathan](https://github.com/hpramanathan)) and shared with each member of the rest of the team ([Benjamin Khoury](https://github.com/khouryb), [Franziska Kissling](https://github.com/FrankieSlinn) and myself ([Catherine Loesch](https://github.com/catherineloesch))). Each team member then proceeded to create their own development branch on their local machine.
 
 ### Day 2: 05/05/2023
 
