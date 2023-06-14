@@ -587,5 +587,5 @@ On the final day, finishing touches were added to the readme document and the te
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
-- enable users to upload files so they can add profile pictures and add phtographs to their posts
+- enable users to upload files so they can add profile pictures and add photographs to their posts
 - incorporate a third-party api: displaying funny or motivational quotes specifically related to divorce would add interesting and relevant content to the website
