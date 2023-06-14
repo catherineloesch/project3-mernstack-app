@@ -18,7 +18,7 @@
 A Full-Stack Guestbook application, built from scratch within 9 days by a team of 4 developers using the MERN stack (MongoDB, Express, React & Node). This group project was the third application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
 <br>
 
-The website allows users to sign up for an account and subsequently login into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.<br>
+The website allows users to sign up for an account and subsequently log into and out of their account. They also have the option to edit their username and password once they are logged in, or delete their account. Authentication was achieved by using the Node ExpressJS and Passport.js packages.<br>
 Users can also read, post, edit and delete comments in the Guestbook appliation, the concept of which was tailored around a specific event type: a divorce party. The idea behind this concept was to support recent divorcees by enjoying their divorce party to the fullest and later re-live all the happy memories.
 
 <img src='./assets/Layout.png' alt="project landing page">
@@ -131,38 +131,37 @@ Additional packages:
 ### MVP Requirements
 
 - thoroughly documented README.md file
-- Excalidraw or Whimsical document to convey the data flow with component hierarchy included.
-- proper indentation, semantic variable names, adhere to naming conventions
-- Remove
+- excalidraw or Whimsical document to convey the data flow with component hierarchy included
+- proper indentation, semantic variable names, adherence to naming conventions
+- removal of:
   - unnecessary boilerplate React files and code
   - console.log()s
   - commented out code
-- All team member should:
+- each team member should:
   - contribute equally
-  - Have a solid understanding of the entire project, even the features implemented by other team members.
-  - Take time to pair program with teammates to reinforce learning.
-  - Be prepared to explain sections of code that were written by teammates.
-- Front end:
-  - Working, interactive React app, built using npx create-react-app client
-  - at least 6 separate, rendered components in an organized and understandable React file structure.
-  - Use only React for DOM Manipulation.
-  - Consume data from an API, and render that data in your components.
-  - Utilize React Router, for client-side routing.
-  - Authentication
-- Back end:
-  - working generic router actions for CRUD using Express, Mongoose, and MongoDB.
-  - Have at least 2 models
-  - Have full CRUD on at least one of your models
-  - Be able to Add/Delete on any remaining models
-  - Authentication
-- Styling:
-  - styling with CSS
-    - flexbox or Grid
+  - have a solid understanding of the entire project, even features implemented by other team members
+  - pair program with teammates to reinforce learning
+  - be prepared to explain sections of code that were written by teammates
+- front end:
+  - working, interactive React app, built using npx create-react-app client
+  - at least 6 separate, rendered components in an organized and understandable React file structure
+  - only React for DOM Manipulation
+  - incorporation of data from an API, with the data being rendered in React components
+  - inclusion of React Router for client-side routing
+  - authentication
+- back end:
+  - working generic router actions for CRUD using Express, Mongoose and MongoDB
+  - at least 2 models
+    - full CRUD on at least one of the models
+    - Add/Delete features on any remaining models
+  - authentication
+- styling:
+  - CSS (flexbox or Grid)
   - responsive design on 2 screen sizes (including desktop) using a media query (mobile)
-- Deployment:
-  - Deploy the fully functional front-end via GitHub Pages or Vercel
-  - Deploy the back-end via Heroku (or vercel)
-  - Deploy the MongoDB database on MongoDB Atlas
+- deployment:
+  - deployment of the fully functional front-end via GitHub Pages or Vercel
+  - deployment of the back-end via Heroku (or vercel)
+  - deployment of the MongoDB database on MongoDB Atlas
 
 ### Stretch goals
 
@@ -182,21 +181,21 @@ Additional packages:
   - The deliverables were issued to the team on 04/05/2023.
     - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
     - the proposal was to include:
-      - description of the project
+      - a description of the project
       - user stories
-      - Database Models Flowchart
-      - Schema
+      - database models flowchart
+      - schema
       - wireframe
-  - Submission deadline + poject presentation on: 12/05/2023
+  - Project submission deadline + project presentation on: 12/05/2023
 
 <br>
 
 ### Day 1: 04/05/2023
 
 On day 1, the team brainstormed together to develop the project concept, design, coding approach and working schedule.
-The team picked a team name (Chewing the CRUD) and agreed on a concept: A virtual guest book for an event, specifically a divorce party. The team then discussed each member's strengths and weaknesses, the details of which were recorded in the [Team Expectations Setting Document](./assets/team_expectations_setting.pdf). <br>
+The team picked a team name (Chewing the CRUD) and agreed on a concept: A virtual guest book for an event, specifically, a divorce party. The team then discussed each member's strengths and weaknesses, the details of which were recorded in the [Team Expectations Setting Document](./assets/team_expectations_setting.pdf). <br>
 
-Next, the team got started on the project proposal, working on the the user stories, a wireframe, schema and flow chart containing the database models that had been agreed upon earlier in the day:
+Next, the team got started on the project proposal, working on the the wireframe, user stories, schema and flow chart containing the database models that had been agreed upon earlier in the day:
 
 ### wireframe
 
@@ -273,7 +272,7 @@ const Post = mongoose.model('Post', postSchema)
 module.exports = Post;
 ```
 
-With other members of the team focusing on the Post model and generating seed data for the database, I tackled the CRUD functions for the User model both for the front end and the back end, writing code to implement full CRUD functionality:
+With other members of the team focusing on the Post model and generating seed data for the database, I tackled the User model, writing code to implement full CRUD functionality:
 
 - INDEX
 - SHOW
@@ -310,7 +309,7 @@ router.delete('/users/:id', (req, res) => {
 ```
 
 After testing all the backend routes in the Postman API platform and feeling condifent that they were working, I started implementing the frontend requests for User model.
-Below is the example of the DELETE fetch request for the User model:
+Below is the the DELETE fetch request for the User model as an example:
 
 ```JavaScript
 export const deleteOneUser = async (id) => {
@@ -335,13 +334,13 @@ export const deleteOneUser = async (id) => {
 
 ### Day 3: 06/05/2023
 
-Since the team had decided on using a CSS framework to do the styling, I installed tailwindCSS for the reacr frontend. In order to learn this new-to-me framework I added a signup form to the frontend to add new users to the database, making sure the form was responsive and would easy to use on mobile screens as well.
+Since the team had decided on using a CSS framework to do the styling, I installed tailwindCSS for the React front end. In order to learn this new-to-me framework, I created a signup form to add new users to the database, making sure the form was responsive and would easy to navigate on mobile screens as well as larger screens.
 
 <img src='./assets/SignUpForm.jpg' alt="Sign Up form to add new Users" width="200">
 
 ### Day 4: 07/05/2023
 
-On the fourth day I continued my tainwindCSS learning curve and created a responsibe navigation bar for the website.
+On the fourth day I continued my tainwindCSS learning curve and created a responsive navigation bar for the website.
 
 <img src='./assets/nav_bar.jpg' alt="Nav Bar Full Screen">
 <img src='./assets/nav_bar_mobile.jpg' alt="nav bar mobile view" width="300">
@@ -352,7 +351,7 @@ I also added a login page for users that are already in the databse:
 
 ### Day 5: 08/05/2023
 
-On the fifth day of development the team focused on the deployment of the frontend to github pages and getting started on user authentication. I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
+On the fifth day of development the team focused on the deployment of the frontend to GitHub Pages and getting started on user authentication. I used the bcrypt package to make sure that passwords entered by users are hashed and salted before being stored in the database, making sure there are no plain-text passwords stored in the backend.
 
 ```JavaScript
 
@@ -391,11 +390,7 @@ router.post('/users', async (req, res) => {
 
 ### Day 6: 09/05/2023
 
-jwt passport strategy
-I spent most of day 6 familiarizing myself with the passport and passport-jwt packages and writing the passport strategy
-generate secret key and store it in .env file
-
-passport options:
+I spent most of day 6 of development familiarizing myself with the passport and passport-jwt packages and writing the passport strategy. I also generated a random secret key and store it in a .env file.
 
 ```JavaScript
 require('dotenv').config()
@@ -407,8 +402,6 @@ jwtOptions.secretOrKey = process.env.SECRET_KEY
 
 ```
 
-passport strategy
-
 ```JavaScript
 
 const Post = require('../models/post')
@@ -417,7 +410,7 @@ const mongoose = require('mongoose');
 const passportJWT = require('passport-jwt')
 const JwtStrategy = passportJWT.Strategy
 
-//strategy: when client sends a request with JWT
+//when the client sends a request
     //check if client has valid JWT
     //check if token is expired
 const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
@@ -441,47 +434,42 @@ const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
 
 ```
 
+After defining the strategy, I worked on the login route for the backend. When a request is made the 'users/login' route, a callback function runs and does 2 main things:
+
+1. check the login credentials (username and password)
+2. if the credentials match a record in the database, retrieve the data stored about the user from the database
+
+When a user logs in with a username and password, the username and password are stored in the body of a post request sent to the backend. The callback function first checks whether the username entered by the user exists in the database (usernames are required to be unique so if the username exists, only one document is returned). If the username does not exist in the database an error message is returned. If it does exist in the database, the password entered by the user is compared to the password stored in the database using the bcrypt package as the password stored in the database is both hashed and salted. If the passwords match, a JWT token, along wiht the user data is returned. If the passwords don't match, an error message is returned.
+
 ```JavaScript
-/**
 
- * Description: Login User and retrieve User data from db
- */
-
-//LOGIN when user tried to log into account with username + password
 router.post('/users/login', async (req, res) => {
-
-    //retrieve user document from db by username (usernames are unique)
     const user = await User.find({username: req.body.username})
 
-    if (user.length == 0) { // no record found in database
+    if (user.length == 0) {
         res.status(400).json({error: 'user does not exist in database'})
+    } else {
 
-    } else { // user exists in db
-
-        try {   //check if password user entered matches password in db
+        try {
             if (await bcrypt.compare(req.body.password, user[0].password)) {
 
                 const payload = {
                     id: user[0]._id,
                     username: user[0].username
                 }
+                const token = jwt.sign(payload, jwtOptions.secretOrKey, {expiresIn: 432000})
 
-                //Build JWT
-                const token = jwt.sign(payload, jwtOptions.secretOrKey, {expiresIn: 432000}) // 5 days -> 432000s
-
-                //Send JWT back to user
                 res.status(201).json({
                     success: true,
                     token: token,
                     user: user
                 })
 
-              } else { // password user entered does not match password in db
+              } else {
                 res.status(401).json({error: 'Invalid username or password'})
               }
         } catch(error) {
             res.status(500).json({error: error})
-
         }
     }
 })
