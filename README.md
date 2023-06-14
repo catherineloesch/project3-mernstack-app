@@ -565,27 +565,27 @@ On the final day, finishing touches were added to the readme document and the te
 
 - Authentication:
   - Developing user authentication posed challenges, in particular developing the passport strategy as none of the team members had worked with passport or passport-jwt before.
-  - These challenges were overcome with extensive researcha and trial and error.
+  - These challenges were overcome with extensive research and trial and error.
   - We also encountered issues retrieving user data after login due to the asynchronous nature of the fetch API, which we managed to resolve with some refactoring and the async/await syntax.
 - Deployment:
-  - a major challenge encountered at the end of the project was during front end deployment prep and its relation to the back end/Heroku server.
+  - A major challenge encountered at the end of the project was during front end deployment prep and its relation to the back end/Heroku server.
   - This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website.
   - The team worked diligently to troubleshoot and resolve this bug, but was unable to do so, hence the website is only accessible via a _localhost_ as of the time of writing.
 
 ## 8. <a name="wins"></a> Wins
 
 - The team managed to fullfill all the MVP requirements with the exception of front end deployment.
-- TailwindCSS: every member on the team managed to learn a new css framework they hadn't used before and felt comfortable using it at the end the project.
+- TailwindCSS: every member on the team managed to learn and become proficient in a new CSS framework by the end the project.
 - Authentication was successfully implemented after overcoming several challenges.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 - Good communication is key when working in a team that contributes to the same git repository.
 - Reviewing git conflicts as a team can avoid issues of code getting deleted.
-- Keeping the front end and back end code in separate git repositories helps avoid complications during the deployment process.
-- Frequently pulling changes from the main github repository and merging them to the local branch you're working on is important in avoiding conflicts when making pull requests further down the line.
+- Keeping the front end and back end code in separate git repositories avoids some complications during the deployment process.
+- Frequently pulling changes from the main github repository and merging them to the local branch you're working on is helpful when trying to avoid merge conflicts with other team members' code further down the line.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
-- enable users to upload files so they can add profile pictures and add phtographs to their posts.
+- enable users to upload files so they can add profile pictures and add phtographs to their posts
 - incorporate a third-party api: displaying funny or motivational quotes specifically related to divorce would add interesting and relevant content to the website
