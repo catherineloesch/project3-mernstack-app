@@ -390,7 +390,7 @@ router.post('/users', async (req, res) => {
 
 ### Day 6: 09/05/2023
 
-I spent most of day 6 of development familiarizing myself with the passport and passport-jwt packages and writing the passport strategy. I also generated a random secret key and store it in a .env file.
+I spent most of day 6 of development familiarizing myself with the passport and passport-jwt packages and writing the passport strategy. I also generated a random secret key and stored it in a .env file.
 
 ```JavaScript
 require('dotenv').config()
@@ -434,12 +434,12 @@ const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
 
 ```
 
-After defining the strategy, I worked on the login route for the backend. When a request is made the 'users/login' route, a callback function runs and does 2 main things:
+After defining the strategy, I worked on the login route for the backend. When a request is made the '/users/login' route, a callback function runs and does 2 main things:
 
 1. check the login credentials (username and password)
-2. if the credentials match a record in the database, retrieve the data stored about the user from the database
+2. if the credentials match a record in the database, retrieve the data stored about the user from the database + generate a new JWT token
 
-When a user logs in with a username and password, the username and password are stored in the body of a post request sent to the backend. The callback function first checks whether the username entered by the user exists in the database (usernames are required to be unique so if the username exists, only one document is returned). If the username does not exist in the database an error message is returned. If it does exist in the database, the password entered by the user is compared to the password stored in the database using the bcrypt package as the password stored in the database is both hashed and salted. If the passwords match, a JWT token, along wiht the user data is returned. If the passwords don't match, an error message is returned.
+When a user logs in through the login page on the front end, the username and password are stored in the body of a post request sent to the backend. The callback function first checks whether the username entered by the user exists in the database (usernames are required to be unique so if the username exists, only one document is returned). If the username does not exist in the database an error message is returned. If it does exist in the database, the password entered by the user is compared to the password stored in the database using the bcrypt package as the password stored in the database is both hashed and salted. If the passwords match, a JWT token, along with the user data is returned. If the passwords don't match, an error message is returned.
 
 ```JavaScript
 
@@ -475,71 +475,47 @@ router.post('/users/login', async (req, res) => {
 })
 ```
 
-The team also worked on etablishing a connection with the Mongo Database and producing seed data to populate it.
+If there are no errors, the user data and token are returned and the token is saved to localStorage in the browser:
+
+```JavaScript
+const findOnLogIn = async (loginData) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(loginData)
+    };
+
+    const url = 'http://localhost:5000/users/login'
+    const response = await fetch(url, fetchOptions);
+    return response.json();
+}
+
+const userData = await findOnLogIn(formData)
+  if (userData.error) {
+    alert("Invalid username or password, couldn't log in!")
+  } else {
+    localStorage.setItem("divorceJWT", JSON.stringify(userData.token))
+  }
+
+```
 
 ### Day 7: 10/05/2023
 
-passport jwt
+On day 7, the the team also worked on etablishing a connection with the Mongo Database and producing seed data to populate it. I also woked on a function to log the user out of their account. Upon logout the JWT needs to be removed from localStorage.
 
 ```JavaScript
-  //upon sign up + login, save token to localStorage in browser
-  localStorage.setItem("divorceJWT", JSON.stringify(token))
-
-  //upon logout, remove token from localStorage
-  localStorage.removeItem("divorceJWT")
-
-```
-
-The user authentication was developed using bcrypt for password hashing and Passport JWT for user authentication. The authentication was integrated into the routes.
-
-### Day 8: 11/05/2023
-
-When a user tries to access any route that is protected, the token in localstorage will be checked first to see if
-
-frontend
-
-```JavaScript
-//access a protected route when accessing user document
-export const getToAccountPage = async (id, token) => {
-    const url = `http://localhost:5000/users/${id}/account`
-    const fetchOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token.token
-    }}
-
-    try {
-        const response = await fetch(url, fetchOptions);
-        const data = await response.json()
-        return data
-    } catch(error) {
-        console.log(error)
-    }
-}
-
-
- async function gotToAccount() {
-    if (props.tokenInLocalStorage) {
-
-      let token = JSON.parse(localStorage.getItem('divorceJWT'))
-      let response = await getToAccountPage(token.id, token)
-
-      if (response.status === 200) {
-        navigate(`/users/${token.id}/account`)
-
-      } else {
-        navigate('/users/login')
-      }
-
-    } else {
-      navigate('/users/login')
-    }
-
+  function logUserOut() {
+    localStorage.removeItem("divorceJWT")
+    navigate('/users/logout')
   }
 ```
 
-backend
+### Day 8: 11/05/2023
+
+On day 8 I focused on integrating authentication to the routes I had created earlier. Whenever a user tries to access any route that is protected, the token in localstorage will be checked first to see if he user is authenticated. Below is the example of the route that takes a user to their account page, which they they should not be able to access unless they have a valid token.
 
 ```JavaScript
 //valid JWT token required to acces this route
@@ -559,9 +535,28 @@ router.get('/users/:id/account', passport.authenticate('jwt', {session: false}),
 
 ```
 
-add account page for user -> protected
-add logout function
-user specific posts +CRUD
+```JavaScript
+//access a protected route when accessing user document
+export const getToAccountPage = async (id, token) => {
+    let token = JSON.parse(localStorage.getItem('divorceJWT'))
+    const url = `http://localhost:5000/users/${id}/account`
+    const fetchOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token.token
+    }}
+
+    try {
+        const response = await fetch(url, fetchOptions);
+        const data = await response.json()
+        return data
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+```
 
 ### Day 9: 12/05/2023 -> Submission deadline + Project Presentation
 
@@ -572,7 +567,7 @@ On the final day, finishing touches were added to the readme document and the te
 - Seeding
   - The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
 - Authentication:
-  - Developing user authentication posed challenges. T
+  - Developing user authentication posed challenges. In particular developing the passport strategy.
 - deployment
   - a major challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server.
   - This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website.
@@ -583,7 +578,7 @@ On the final day, finishing touches were added to the readme document and the te
 
 - The team managed to fullfill all the MVP requirements with the exception of front end deployment.
 - TailwindCSS: every member on the team managed to learn a new css framework they hadn't used before and felt comfortable using it at the end the project.
-- Authentication was successfully implemented which the team was proud of as none of the member has worked on authentication before this project.
+- Authentication was successfully implemented.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
