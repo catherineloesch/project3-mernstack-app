@@ -79,7 +79,7 @@ Additional packages:
   - https://www.npmjs.com/package/cors
 - dotenv (v.16.0.3)
   - https://www.npmjs.com/package/dotenv
-- mongodb (v5.4.0)
+- mongoDB (v5.4.0)
   - https://www.npmjs.com/package/mongodb
 - mongoose(v7.1.0)
   - https://www.npmjs.com/package/mongoose
@@ -122,7 +122,7 @@ Additional packages:
   - used for launching the website and displaying the application Google Chrome
   - Google Chrome Developer Tools: For troubleshooting and debugging
   - https://www.google.com/intl/en_uk/chrome/
-- excalidraw
+- Excalidraw
   - used for building the wireframe + ERD
   - https://excalidraw.com/
 
@@ -131,7 +131,7 @@ Additional packages:
 ### MVP Requirements
 
 - thoroughly documented README.md file
-- excalidraw or Whimsical document to convey the data flow with component hierarchy included
+- Excalidraw or Whimsical document to convey the data flow with component hierarchy included
 - proper indentation, semantic variable names, adherence to naming conventions
 - removal of:
   - unnecessary boilerplate React files and code
@@ -153,20 +153,20 @@ Additional packages:
   - working generic router actions for CRUD using Express, Mongoose and MongoDB
   - at least 2 models
     - full CRUD on at least one of the models
-    - Add/Delete features on any remaining models
+    - add/delete features on any remaining models
   - authentication
 - styling:
   - CSS (flexbox or Grid)
   - responsive design on 2 screen sizes (including desktop) using a media query (mobile)
 - deployment:
   - deployment of the fully functional front-end via GitHub Pages or Vercel
-  - deployment of the back-end via Heroku (or vercel)
+  - deployment of the back-end via Heroku or Vercel
   - deployment of the MongoDB database on MongoDB Atlas
 
 ### Stretch goals
 
 - more than 2 models
-- css framework e.g. TailwindCSS or bootstrap
+- css framework e.g. TailwindCSS or Bootstrap
 
 ## <a name="planning"></a>6. Planning/Build Process
 
@@ -178,14 +178,14 @@ Additional packages:
   - myself - [Catherine Loesch](https://github.com/catherineloesch)
 
 - Timeframe:
-  - The deliverables were issued to the team on 04/05/2023.
-    - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
-    - the proposal was to include:
+  - The deliverables were issued to the team on: 04/05/2023.
+    - A project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the project.
+    - The proposal was to include:
       - a description of the project
       - user stories
-      - database models flowchart
-      - schema
-      - wireframe
+      - a database models flowchart
+      - a schema
+      - a wireframe
   - Project submission deadline + project presentation on: 12/05/2023
 
 <br>
@@ -217,7 +217,7 @@ Next, the team got started on the project proposal, working on the the wireframe
 
 <br>
 
-### schema
+### Schema
 
 <img src='./assets/schema.png' alt="project schema">
 
@@ -235,7 +235,7 @@ After getting the proposal approved by the instructional team, a git repository 
 
 With the git repository and development branches set up, the team divided up the tasks and started the coding phase of the project:
 I got started on the front end by setting the react application witht the 'npx create-react-app' command and installing react-router.
-I then moved on to creating the 2 models for the project: a User and a Post model. These models have a one-to-many relationship where a User can have many posts but a post only belongs to one user.
+I then moved on to creating the 2 models for the project in the back end: a User and a Post model. These models have a one-to-many relationship where a User can have many posts but a post only belongs to one user.
 
 ```JavaScript
 const mongoose = require('mongoose')
@@ -334,7 +334,7 @@ export const deleteOneUser = async (id) => {
 
 ### Day 3: 06/05/2023
 
-Since the team had decided on using a CSS framework to do the styling, I installed tailwindCSS for the React front end. In order to learn this new-to-me framework, I created a signup form to add new users to the database, making sure the form was responsive and would easy to navigate on mobile screens as well as larger screens.
+Since the team had decided to use a CSS framework to do the styling, I installed tailwindCSS for the React front end. In order to learn this new-to-me framework, I created a sign up form to add new users to the database, making sure the form was responsive and would easy to navigate on mobile screens as well as larger screens.
 
 <img src='./assets/SignUpForm.jpg' alt="Sign Up form to add new Users" width="200">
 
@@ -343,6 +343,7 @@ Since the team had decided on using a CSS framework to do the styling, I install
 On the fourth day I continued my tainwindCSS learning curve and created a responsive navigation bar for the website.
 
 <img src='./assets/nav_bar.jpg' alt="Nav Bar Full Screen">
+
 <img src='./assets/nav_bar_mobile.jpg' alt="nav bar mobile view" width="300">
 
 I also added a login page for users that are already in the databse:
@@ -434,12 +435,12 @@ const strategy = new JwtStrategy(jwtOptions, async (jwtPayload, next) => {
 
 ```
 
-After defining the strategy, I worked on the login route for the backend. When a request is made the '/users/login' route, a callback function runs and does 2 main things:
+After defining the strategy, I worked on the login route for the backend. When a request is made to the '/users/login' route, a callback function runs and does 2 main things:
 
 1. check the login credentials (username and password)
-2. if the credentials match a record in the database, retrieve the data stored about the user from the database + generate a new JWT token
+2. if the credentials match a record in the database, retrieve the data stored about the user from the database and generate a new JWT token
 
-When a user logs in through the login page on the front end, the username and password are stored in the body of a post request sent to the backend. The callback function first checks whether the username entered by the user exists in the database (usernames are required to be unique so if the username exists, only one document is returned). If the username does not exist in the database an error message is returned. If it does exist in the database, the password entered by the user is compared to the password stored in the database using the bcrypt package as the password stored in the database is both hashed and salted. If the passwords match, a JWT token, along with the user data is returned. If the passwords don't match, an error message is returned.
+When a user logs in through the login page on the front end, the username and password are stored in the body of a post request sent to the backend. The callback function first checks whether the username entered by the user exists in the database (usernames are required to be unique so if the username exists, only one document is returned). <br> If the username does not exist in the database an error message is returned. If it does exist in the database, the password entered by the user is compared to the password stored in the database using the bcrypt package as the password stored in the database is both hashed and salted. If the passwords match, a JWT token is generates and returned, along with the user data. If the passwords don't match, an error message is returned.
 
 ```JavaScript
 
@@ -475,7 +476,7 @@ router.post('/users/login', async (req, res) => {
 })
 ```
 
-If there are no errors, the user data and token are returned and the token is saved to localStorage in the browser:
+If there are no errors, the user data and token are returned to the client and the token is saved to localStorage in the browser:
 
 ```JavaScript
 const findOnLogIn = async (loginData) => {
@@ -504,7 +505,7 @@ const userData = await findOnLogIn(formData)
 
 ### Day 7: 10/05/2023
 
-On day 7, the the team also worked on etablishing a connection with the Mongo Database and producing seed data to populate it. I also woked on a function to log the user out of their account. Upon logout the JWT needs to be removed from localStorage.
+On day 7, the team worked on etablishing a connection with the Mongo Database and producing seed data to populate it. I also woked on a function to log the user out of their account. Upon logout, the JWT needs to be removed from localStorage.
 
 ```JavaScript
   function logUserOut() {
@@ -515,10 +516,9 @@ On day 7, the the team also worked on etablishing a connection with the Mongo Da
 
 ### Day 8: 11/05/2023
 
-On day 8 I focused on integrating authentication to the routes I had created earlier. Whenever a user tries to access any route that is protected, the token in localstorage will be checked first to see if he user is authenticated. Below is the example of the route that takes a user to their account page, which they they should not be able to access unless they have a valid token.
+On day 8 I focused on integrating authentication to the routes I had created earlier. Whenever a user tries to access any route that is protected, the token in localstorage will be checked first to see if the user is authenticated. Below is the example of the route that takes a user to their account page, which they should not be able to access unless they have a valid token.
 
 ```JavaScript
-//valid JWT token required to acces this route
 router.get('/users/:id/account', passport.authenticate('jwt', {session: false}), (req, res) => {
     try {
         res.json({
@@ -536,8 +536,7 @@ router.get('/users/:id/account', passport.authenticate('jwt', {session: false}),
 ```
 
 ```JavaScript
-//access a protected route when accessing user document
-export const getToAccountPage = async (id, token) => {
+const getToAccountPage = async (id, token) => {
     let token = JSON.parse(localStorage.getItem('divorceJWT'))
     const url = `http://localhost:5000/users/${id}/account`
     const fetchOptions = {
@@ -564,21 +563,20 @@ On the final day, finishing touches were added to the readme document and the te
 
 ## 7. <a name="challenges"></a> Challenges
 
-- Seeding
-  - The team faced challenges while implementing the seed file to populate initial data into the database. It required careful handling and synchronization to ensure the data was properly seeded.
 - Authentication:
-  - Developing user authentication posed challenges. In particular developing the passport strategy.
-- deployment
-  - a major challenge encountered at the end of the project was the issue with the Front-End deployment prep and its relation to the (back-end) Heroku server.
+  - Developing user authentication posed challenges, in particular developing the passport strategy as none of the team members had worked with passport or passport-jwt before.
+  - These challenges were overcome with extensive researcha and trial and error.
+  - We also encountered issues retrieving user data after login due to the asynchronous nature of the fetch API, which we managed to resolve with some refactoring and the async/await syntax.
+- Deployment:
+  - a major challenge encountered at the end of the project was during front end deployment prep and its relation to the back end/Heroku server.
   - This connectivity issue caused a disruption in the expected flow of data and functionality, hindering the full operation of the website.
-  - The team worked diligently to troubleshoot and resolve this bug, but were unable to do so.
-    Hence the website is only accessible via a _localhost_.
+  - The team worked diligently to troubleshoot and resolve this bug, but was unable to do so, hence the website is only accessible via a _localhost_ as of the time of writing.
 
 ## 8. <a name="wins"></a> Wins
 
 - The team managed to fullfill all the MVP requirements with the exception of front end deployment.
 - TailwindCSS: every member on the team managed to learn a new css framework they hadn't used before and felt comfortable using it at the end the project.
-- Authentication was successfully implemented.
+- Authentication was successfully implemented after overcoming several challenges.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
