@@ -229,7 +229,7 @@ Next, the team got started on the project proposal, working on the the wireframe
 
 <br>
 
-After getting the proposal approved by the instructional team, a git repository was set up by team lead ([Hari Ramanathan](https://github.com/hpramanathan)) and shared with each member of the rest of the team ([Benjamin Khoury](https://github.com/khouryb), [Franziska Kissling](https://github.com/FrankieSlinn) and myself, [Catherine Loesch](https://github.com/catherineloesch)). Each team member then proceeded to create their own development branch on their local machine.
+After getting the proposal approved by the instructional team, a git repository was set up by team lead ([Hari Ramanathan](https://github.com/hpramanathan)) and shared with each member of the rest of the team ([Benjamin Khoury](https://github.com/khouryb), [Franziska Kissling](https://github.com/FrankieSlinn) and myself, [Katie Loesch](https://github.com/katieloesch)). Each team member then proceeded to create their own development branch on their local machine.
 
 ### Day 2: 05/05/2023
 
