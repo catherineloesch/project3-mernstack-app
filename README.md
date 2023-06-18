@@ -175,7 +175,7 @@ Additional packages:
   - [Hari Ramanathan](https://github.com/hpramanathan) - GitHub Code Owner/Team Lead
   - [Benjamin Khoury](https://github.com/khouryb)
   - [Franziska Kissling](https://github.com/FrankieSlinn)
-  - myself - [Catherine Loesch](https://github.com/catherineloesch)
+  - myself - [Katie Loesch](https://github.com/katieloesch)
 
 - Timeframe:
   - The deliverables were issued to the team on: 04/05/2023.
